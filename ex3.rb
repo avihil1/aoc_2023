@@ -1,4 +1,3 @@
-require 'set'
 
 def key(i,j)
  "#{i},#{j}"
@@ -9,9 +8,9 @@ def parse(line, line_num, arr, hsh)
   line.chars.each_with_index{|chr, i|
     if chr.ord >= 48 && chr.ord <= 57
       num += chr
-      arr << {num: num.to_i, start: i-num.length+1, end: i, line: line_num} if i == line.length-1
+      arr << {num: num.to_i, start: i-num.length+1, end: i,   line: line_num} if i == line.length-1
     else
-      arr << {num: num.to_i, start: i-num.length, end: i - 1, line: line_num} if !num.empty?
+      arr << {num: num.to_i, start: i-num.length,   end: i-1, line: line_num} if !num.empty?
       num = ""
       hsh[key(line_num, i)] = chr if chr != '.'
     end
