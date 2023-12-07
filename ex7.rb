@@ -30,12 +30,12 @@ def calc_rank(h_ranks)
   if h.include?(5)
     5
   elsif h.include?(4)
-    j_times == 4 ? 5 : 4 + j_times
+    j_times > 0 ? 5 : 4
   elsif h.include?(3)
     if h.include?(2)
-      (j_times == 2 || j_times == 3) ? 5 : 3.5
+      j_times > 0 ? 5 : 3.5
     else
-      j_times == 3 ? 4 : 3 + j_times
+      j_times > 0 ? 4 : 3
     end
   elsif h.include?(2) # and not 3!
     if h[2] == 2 # 2 * 2
@@ -47,7 +47,7 @@ def calc_rank(h_ranks)
         4
       end
     else # one pair of 2
-      j_times == 2 ? 3 : 2 + j_times
+      j_times > 0 ? 3 : 2
     end
   else
     1 + j_times
