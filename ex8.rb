@@ -18,6 +18,7 @@ def part
   h = {}
   File.read($file).each_line {|l|
     l.strip!
+
     if !actions
       actions = l.chars
       next
