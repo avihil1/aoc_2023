@@ -9,7 +9,7 @@ def steps(node, h, actions, &block) =
   }
 
 def steps_to_zz_tripo2(h, actions) =
-  h.select{|node| node['A']}.keys.map{|node|
+  h.select{|node| node.end_with?('A')}.keys.map{|node|
     steps(node, h, actions) { h[_1]['Z'] }
   }.reduce(&:lcm)
 
