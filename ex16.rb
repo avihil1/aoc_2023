@@ -76,7 +76,7 @@ def walk_thru(arr, h, buffer)
   colums_len = arr[0].size
   while true
     break if buffer.empty?
-    i, j, direction = buffer.shift
+    i, j, direction = buffer.pop
     next_move = move(i, j, direction, arr, h)
     next_move.each{|place|
       if !place.nil? && !place.empty? && valid?(rows_len, colums_len, place[0], place[1]) && !already_energized?(h, place[0], place[1], place[2])
