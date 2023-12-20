@@ -68,8 +68,9 @@ end
 
 DIR = {UP => "UP", DOWN => "DOWN", RIGHT => "RIGHT", LEFT => "LEFT"}
 
-def walk_thru(arr, h, buffer)
+def walk_thru(arr, buffer)
   i,j,dir = buffer[0]
+  h = {}
   energizing(h,i,j,dir)
   cnt = 0
   rows_len = arr.size
@@ -85,6 +86,7 @@ def walk_thru(arr, h, buffer)
       end
     }
   end
+  h.keys.size
 end
 
 def part(part2=false)
@@ -94,18 +96,15 @@ def part(part2=false)
   }
 
   if !part2
-    h_energized = {}
-    walk_thru(arr, h_energized, buffer = [ [0, 0, RIGHT] ])
-    h_energized.keys.size
+    walk_thru(arr, buffer = [ [0, 0, RIGHT] ])
   else
     max_tiles = 0
     [UP, DOWN, LEFT, RIGHT].each{|dir|
       0.upto(arr.size-1) {|i|
         0.upto(arr[0].size-1) {|j|
           next if i != 0 && i !=(arr.size-1) && j !=0 && j != (arr[0].size-1)
-          h_energized = {}
-          walk_thru(arr, h_energized, buffer = [ [i, j, dir] ])
-          max_tiles = h_energized.keys.size if h_energized.keys.size > max_tiles
+          tiles = walk_thru(arr, buffer = [ [i, j, dir] ])
+          max_tiles = tiles if tiles > max_tiles
         }
       }
     }
